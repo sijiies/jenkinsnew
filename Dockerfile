@@ -1,7 +1,16 @@
-# Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-# For more information, please see https://aka.ms/containercompat
+# Use a base image with ASP.NET and Windows Server Core compatible with .NET Framework 4.6.1
+FROM mcr.microsoft.com/dotnet/framework/aspnet:4.6.1-windowsservercore-ltsc2019
 
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
+# Set the build argument for source folder
 ARG source
 WORKDIR /inetpub/wwwroot
+
+# Copy the published application files into the container
 COPY ${source:-obj/Docker/publish} .
+
+# Expose the necessary ports
+EXPOSE 80
+
+# Define the entry point
+ENTRYPOINT ["cmd", "/c", "start"]
+
