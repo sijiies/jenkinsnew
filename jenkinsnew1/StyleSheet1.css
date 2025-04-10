@@ -1,0 +1,6 @@
+﻿body {
+    background-color: #ADD8E6; /* Light grey background */
+    background-image: url('images/background.jpg'); /* Background image */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
